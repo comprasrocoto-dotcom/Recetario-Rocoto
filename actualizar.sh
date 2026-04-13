@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # ══════════════════════════════════════════════════════════════
-#  MALANGA RECETARIO — Actualizar base de datos
+#  ROCOTO RECETARIO — Actualizar base de datos
 #  Ejecuta este script cada vez que actualices las recetas
 # ══════════════════════════════════════════════════════════════
 
 echo ""
-echo "🌿 MALANGA RECETARIO — Actualización"
+echo "🌿 ROCOTO RECETARIO — Actualización"
 echo "════════════════════════════════════"
 echo ""
 
