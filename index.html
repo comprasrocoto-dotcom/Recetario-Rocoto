@@ -1663,3 +1663,365 @@ init();
 
 </body>
 </html>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar">
+<div class="slogo"><div class="slogo-icon">🌶️</div><span class="slogo-text">Rocoto</span><span class="slogo-v">v2.0</span></div>
+<div class="ssec"><div class="ssec-label">Principal</div>
+<button class="nav on" data-page="dashboard"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</button>
+<button class="nav" data-page="recipes"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Todas las Recetas<span class="nbadge" id="nbRecipes">0</span></button>
+<button class="nav" data-page="categories"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>Categorías</button>
+<button class="nav" data-page="favorites"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Favoritos</button></div>
+<div class="sdiv"></div>
+<div class="ssec"><div class="ssec-label">Operaciones</div>
+<button class="nav" data-page="production"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Producción<span class="nbadge" style="background:rgba(245,158,11,.1);color:#F59E0B">2</span></button>
+<button class="nav" data-page="costs"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Control de Costos</button>
+<button class="nav" data-page="inventory"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>Inventario</button></div>
+<div class="sdiv"></div>
+<div class="ssec"><div class="ssec-label">Sistema</div>
+<button class="nav" data-page="history"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Historial</button>
+<button class="nav" data-page="settings"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Configuración</button></div>
+<div class="sfooter"><div class="upill"><div class="uavatar">A</div><div class="uinfo"><div class="uname">Administrador</div><div class="urole">Admin · Rocoto</div></div></div></div>
+</nav>
+<header class="topbar">
+<button class="ibtn mob-menu" id="mobMenu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<div class="tsearch"><svg class="tsearch-ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="globalSearch" placeholder="Buscar receta, ingrediente, categoría, SKU…" autocomplete="off"/><div class="sr-wrap" id="searchResults"></div></div>
+<div class="tactions"><button class="ibtn" title="Notificaciones"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="ndot"></span></button>
+<button class="tbtn tbtn-p" onclick="openModal('modalRecipe')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nueva Receta</button></div>
+</header>
+<main class="main">
+<section class="page on" id="page-dashboard">
+<div class="ph"><div><div class="pey">Panel de control</div><h1 class="pt">Dashboard</h1><p class="ps">Resumen operativo de tu recetario profesional</p></div><div class="pha"><button class="btn btn-s" onclick="exportPDF()">Exportar</button></div></div>
+<div class="sgrid" id="dashStats"></div>
+<div class="g2 mb8"><div class="card"><div class="card-h"><span class="card-t">Recetas por Categoría</span><span class="badge bacc">Distribución</span></div><div class="card-b"><div style="height:240px"><canvas id="chartCat"></canvas></div></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Costos por Receta</span><span class="badge bacc">Top</span></div><div class="card-b"><div style="height:240px"><canvas id="chartCost"></canvas></div></div></div></div>
+<div class="g2 mb8"><div class="card"><div class="card-h"><span class="card-t">Más Consultadas</span><span class="badge bsuc">Esta semana</span></div><div class="card-b" id="topRecipes"></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Actividad Reciente</span><span class="badge bmut">Últimos eventos</span></div><div class="card-b" id="recentAct"></div></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Órdenes de Producción Activas</span><span class="badge bwrn" id="prodCountBadge">0</span></div><div class="card-b" id="prodWidget"></div></div>
+</section>
+<section class="page" id="page-recipes">
+<div class="ph"><div><div class="pey">Recetario</div><h1 class="pt">Todas las Recetas</h1><p class="ps" id="recipesSub">Cargando…</p></div><div class="pha"><button class="btn btn-s" onclick="exportPDF()">Exportar</button><button class="btn btn-p" onclick="openModal('modalRecipe')">+ Nueva Receta</button></div></div>
+<div class="fbar"><div class="fs"><svg class="fs-ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="recipeSearch" placeholder="Buscar por nombre, ingrediente, SKU…" oninput="filterRecipes()"/></div><div class="chips" id="catChips"></div></div>
+<div class="ga" id="recipesGrid"></div>
+<div id="recipesEmpty" class="empty" style="display:none"><div class="empty-icon">🔍</div><div class="empty-t">Sin resultados</div><div class="empty-s">Intenta con otro término</div></div>
+<div id="recipeDetail" style="display:none"><button class="btn btn-g" style="margin-bottom:16px" onclick="closeDetail()">← Volver a recetas</button><div id="detailContent"></div></div>
+</section>
+<section class="page" id="page-categories"><div class="ph"><div><div class="pey">Organización</div><h1 class="pt">Categorías</h1><p class="ps">Gestiona las categorías de tu recetario</p></div></div><div class="g3" id="categoriesGrid"></div></section>
+<section class="page" id="page-favorites"><div class="ph"><div><div class="pey">Mis favoritos</div><h1 class="pt">Recetas Favoritas</h1><p class="ps">Tus recetas marcadas como favoritas</p></div></div><div class="ga" id="favGrid"></div></section>
+<section class="page" id="page-production">
+<div class="ph"><div><div class="pey">Cocina</div><h1 class="pt">Producción</h1><p class="ps">Órdenes de producción y planificación</p></div><div class="pha"><button class="btn btn-s" onclick="exportPDF()">Exportar PDF</button><button class="btn btn-p" onclick="openModal('modalProd')">+ Nueva Orden</button></div></div>
+<div class="sgrid" id="prodStats" style="grid-template-columns:repeat(4,1fr)"></div>
+<div class="card"><div class="card-h"><span class="card-t">Órdenes de Producción</span></div><div class="tw" id="prodTable"></div></div>
+</section>
+<section class="page" id="page-costs">
+<div class="ph"><div><div class="pey">Finanzas</div><h1 class="pt">Control de Costos</h1><p class="ps">Análisis de costos por receta y margen de contribución</p></div></div>
+<div class="sgrid" id="costStats" style="grid-template-columns:repeat(4,1fr)"></div>
+<div class="card mb8"><div class="card-h"><span class="card-t">Análisis de Costos por Receta</span><span class="badge bacc">Costo + Margen</span></div><div class="card-b"><div style="height:280px"><canvas id="chartMargin"></canvas></div></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Desglose por Receta</span></div><div class="tw" id="costsTable"></div></div>
+</section>
+<section class="page" id="page-inventory">
+<div class="ph"><div><div class="pey">Almacén</div><h1 class="pt">Inventario</h1><p class="ps">Control de ingredientes, SKUs y costos</p></div><div class="pha"><button class="btn btn-p" onclick="openModal('modalInv')">+ Nuevo Ingrediente</button></div></div>
+<div class="ic-controls"><div class="fs" style="max-width:320px"><svg class="fs-ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="invSearch" placeholder="Buscar por nombre o SKU…" oninput="filterInventory(this.value)"/></div><div class="flex gap2"><span class="badge bsuc" id="invOk">0 OK</span><span class="badge bwrn" id="invLow">0 Bajo</span><span class="badge berr" id="invCrit">0 Crítico</span></div></div>
+<div class="tw" id="invTable"></div>
+</section>
+<section class="page" id="page-history"><div class="ph"><div><div class="pey">Auditoría</div><h1 class="pt">Historial de Cambios</h1><p class="ps">Registro completo de modificaciones</p></div></div><div class="card"><div class="card-h"><span class="card-t">Actividad del Sistema</span></div><div id="histList"></div></div></section>
+<section class="page" id="page-settings">
+<div class="ph"><div><div class="pey">Sistema</div><h1 class="pt">Configuración</h1><p class="ps">Personaliza el sistema según tus necesidades</p></div></div>
+<div class="g2"><div class="card"><div class="card-h"><span class="card-t">Perfil del Negocio</span></div><div class="card-b">
+<div class="fg"><label class="fl">Nombre del establecimiento</label><input class="fi" type="text" value="Restaurante Rocoto"/></div>
+<div class="fg"><label class="fl">Tipo de negocio</label><select class="fi"><option>Restaurante</option><option>Bar & Cocina</option><option>Franquicia</option><option>Catering</option><option>Dark Kitchen</option></select></div>
+<div class="fg"><label class="fl">Moneda</label><select class="fi"><option>PEN - Sol Peruano</option><option>USD - Dólar</option><option>EUR - Euro</option></select></div>
+<div class="fg"><label class="fl">Margen objetivo (%)</label><input class="fi" type="number" value="35"/></div>
+<div class="mt4"><button class="btn btn-p" onclick="toast('Configuración guardada','ok')">Guardar cambios</button></div></div></div>
+<div><div class="card mb8"><div class="card-h"><span class="card-t">Roles y Permisos</span></div><div class="card-b"><div class="roles-grid" id="rolesGrid"></div></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Preferencias</span></div><div class="card-b">
+<div class="flex flex-c jb" style="padding:12px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:500">Modo oscuro</div><div style="font-size:11px;color:var(--tm)">Tema visual</div></div><div class="toggle-sw on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div>
+<div class="flex flex-c jb" style="padding:12px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:500">Alertas de stock bajo</div><div style="font-size:11px;color:var(--tm)">Notificar ingredientes bajos</div></div><div class="toggle-sw on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div>
+<div class="flex flex-c jb" style="padding:12px 0"><div><div style="font-size:13px;font-weight:500">Auto-calcular costos</div><div style="font-size:11px;color:var(--tm)">Actualizar automáticamente</div></div><div class="toggle-sw on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div>
+</div></div></div></div>
+</section>
+</main>
+  </div>
+<div class="modal" id="modalRecipe"><div class="modal-box" style="max-width:800px">
+<div class="modal-h"><span class="modal-t">Nueva Receta</span><button class="modal-x" onclick="closeModal('modalRecipe')">✕</button></div>
+<div class="fi-2c"><div class="fg"><label class="fl">Nombre *</label><input class="fi" type="text" id="nrName" placeholder="Ej: Ceviche de Langostinos"/></div><div class="fg"><label class="fl">Categoría *</label><select class="fi" id="nrCat"></select></div></div>
+<div class="fi-3c"><div class="fg"><label class="fl">Tiempo (min)</label><input class="fi" type="number" id="nrTime" placeholder="30"/></div><div class="fg"><label class="fl">Porciones</label><input class="fi" type="number" id="nrPort" placeholder="4"/></div><div class="fg"><label class="fl">Rendimiento</label><input class="fi" type="text" id="nrYield" placeholder="800g"/></div></div>
+<div class="fi-2c"><div class="fg"><label class="fl">SKU</label><input class="fi" type="text" id="nrSku" placeholder="MAR-002"/></div><div class="fg"><label class="fl">Estado</label><select class="fi" id="nrStatus"><option value="active">Activo</option><option value="inactive">Inactivo</option></select></div></div>
+<div class="fg"><label class="fl">Notas del chef</label><textarea class="notes-area" id="nrNotes" rows="3" placeholder="Recomendaciones, estándares de calidad…"></textarea></div>
+<div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end"><button class="btn btn-g" onclick="closeModal('modalRecipe')">Cancelar</button><button class="btn btn-p" onclick="saveRecipe()">Crear Receta</button></div>
+</div></div>
+<div class="modal" id="modalProd"><div class="modal-box">
+<div class="modal-h"><span class="modal-t">Nueva Orden de Producción</span><button class="modal-x" onclick="closeModal('modalProd')">✕</button></div>
+<div class="fg"><label class="fl">Receta *</label><select class="fi" id="poRecipe"></select></div>
+<div class="fi-2c"><div class="fg"><label class="fl">Cantidad</label><input class="fi" type="number" id="poQty" placeholder="10"/></div><div class="fg"><label class="fl">Unidad</label><select class="fi" id="poUnit"><option>porciones</option><option>unidades</option><option>kg</option><option>litros</option></select></div></div>
+<div class="fi-2c"><div class="fg"><label class="fl">Fecha</label><input class="fi" type="date" id="poDate"/></div><div class="fg"><label class="fl">Responsable</label><input class="fi" type="text" id="poResp" placeholder="Chef responsable"/></div></div>
+<div class="fg"><label class="fl">Notas</label><textarea class="notes-area" id="poNotes" rows="2"></textarea></div>
+<div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end"><button class="btn btn-g" onclick="closeModal('modalProd')">Cancelar</button><button class="btn btn-p" onclick="saveProd()">Crear Orden</button></div>
+</div></div>
+<div class="modal" id="modalInv"><div class="modal-box">
+<div class="modal-h"><span class="modal-t">Nuevo Ingrediente</span><button class="modal-x" onclick="closeModal('modalInv')">✕</button></div>
+<div class="fi-2c"><div class="fg"><label class="fl">Nombre *</label><input class="fi" type="text" id="ivName" placeholder="Corvina fresca"/></div><div class="fg"><label class="fl">SKU *</label><input class="fi" type="text" id="ivSku" placeholder="ING-099"/></div></div>
+<div class="fi-3c"><div class="fg"><label class="fl">Unidad</label><select class="fi" id="ivUnit"></select></div><div class="fg"><label class="fl">Costo unit. (S/.)</label><input class="fi" type="number" id="ivCost" step="0.001"/></div><div class="fg"><label class="fl">Stock actual</label><input class="fi" type="number" id="ivStock"/></div></div>
+<div class="fi-2c"><div class="fg"><label class="fl">Stock mínimo</label><input class="fi" type="number" id="ivMin"/></div><div class="fg"><label class="fl">Categoría</label><input class="fi" type="text" id="ivCatF" placeholder="Proteínas"/></div></div>
+<div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end"><button class="btn btn-g" onclick="closeModal('modalInv')">Cancelar</button><button class="btn btn-p" onclick="saveIng()">Guardar</button></div>
+</div></div>
+<div class="toast" id="toast"></div>
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('on')"><button class="lb-close">✕</button><img id="lbImg" src="" alt=""/></div>
+<script>
+const DB={
+categories:['Entradas','Sopas','Ensaladas','Arroces','Pastas','Carnes','Aves','Mariscos','Postres','Bebidas','Salsas','Bases'],
+units:['g','kg','ml','L','unidad','taza','cdta','cda','oz','lb','porción','manojo','pizca','diente'],
+recipes:[
+{id:1,name:'Ceviche Clásico de Rocoto',category:'Mariscos',emoji:'🐟',time:30,portions:4,yield:'800g',cost:12.50,sku:'MAR-001',status:'active',fav:true,tags:['Firma','Popular'],updated:'2026-06-01',views:342,
+ingredients:[{name:'Corvina fresca',sku:'ING-001',qty:500,unit:'g',unitCost:0.018,total:9.00},{name:'Jugo de limón',sku:'ING-002',qty:200,unit:'ml',unitCost:0.003,total:0.60},{name:'Rocoto fresco',sku:'ING-003',qty:50,unit:'g',unitCost:0.012,total:0.60},{name:'Cebolla morada',sku:'ING-004',qty:100,unit:'g',unitCost:0.004,total:0.40},{name:'Cilantro',sku:'ING-005',qty:20,unit:'g',unitCost:0.008,total:0.16},{name:'Ajo molido',sku:'ING-007',qty:10,unit:'g',unitCost:0.009,total:0.09},{name:'Choclo cocido',sku:'ING-009',qty:200,unit:'g',unitCost:0.003,total:0.60}],
+steps:[{n:1,text:'Cortar la corvina en cubos de 2cm, limpiar de espinas y piel. Reservar en frío.'},{n:2,text:'Mezclar jugo de limón con rocoto licuado, sal y ajo. Leche de tigre base.',note:'El limón debe exprimirse al momento para evitar oxidación.'},{n:3,text:'Cortar cebolla morada en pluma fina, lavar y escurrir.'},{n:4,text:'Combinar pescado con leche de tigre. Marinar 4-6 minutos.'},{n:5,text:'Agregar cebolla y cilantro. Ajustar sazón.'},{n:6,text:'Servir sobre plato frío con choclo y camote.'}],
+notes:'Usar pescado del día. Temperatura 2-4°C. Marinar máximo 8 minutos.',quality:'Textura firme, color blanco nacarado, sabor ácido-picante equilibrado.',chef:'Agregar hielo a la leche de tigre para enfriar rápido.',photos:['🐟','🍋','🌶️']},
+{id:2,name:'Lomo Saltado Tradicional',category:'Carnes',emoji:'🥩',time:25,portions:4,yield:'600g',cost:18.20,sku:'CAR-001',status:'active',fav:true,tags:['Clásico','Popular'],updated:'2026-05-28',views:289,
+ingredients:[{name:'Lomo de res',sku:'ING-010',qty:600,unit:'g',unitCost:0.022,total:13.20},{name:'Tomate',sku:'ING-011',qty:200,unit:'g',unitCost:0.003,total:0.60},{name:'Cebolla morada',sku:'ING-004',qty:150,unit:'g',unitCost:0.004,total:0.60},{name:'Ají amarillo',sku:'ING-012',qty:60,unit:'g',unitCost:0.008,total:0.48},{name:'Soya',sku:'ING-013',qty:30,unit:'ml',unitCost:0.012,total:0.36},{name:'Papas fritas',sku:'ING-015',qty:400,unit:'g',unitCost:0.004,total:1.60},{name:'Aceite vegetal',sku:'ING-016',qty:40,unit:'ml',unitCost:0.003,total:0.12}],
+steps:[{n:1,text:'Cortar lomo en tiras de 1.5cm. Salpimentar.'},{n:2,text:'Wok al máximo calor. Sellar carne en lotes.',note:'El wok debe humear antes de la carne.'},{n:3,text:'Saltear cebolla y ají 1 minuto.'},{n:4,text:'Agregar tomate, soya y vinagre. Cocinar 2 min a fuego alto.'},{n:5,text:'Incorporar carne. Mezclar. Culantro al final.'},{n:6,text:'Servir con arroz y papas fritas.'}],
+notes:'Carne de primera. Wok de hierro para temperatura.',quality:'Carne jugosa, verduras con textura, salsa brillante.',chef:'El fuego es todo. Sin wok caliente no hay buen lomo saltado.',photos:['🥩','🍅','🌿']},
+{id:3,name:'Arroz con Leche Peruano',category:'Postres',emoji:'🍚',time:45,portions:8,yield:'1.2kg',cost:4.80,sku:'POS-001',status:'active',fav:false,tags:['Postre','Tradicional'],updated:'2026-05-20',views:156,
+ingredients:[{name:'Arroz extra',sku:'ING-020',qty:200,unit:'g',unitCost:0.002,total:0.40},{name:'Leche entera',sku:'ING-021',qty:1000,unit:'ml',unitCost:0.002,total:2.00},{name:'Azúcar blanca',sku:'ING-022',qty:150,unit:'g',unitCost:0.001,total:0.15},{name:'Canela en rama',sku:'ING-023',qty:2,unit:'unidad',unitCost:0.25,total:0.50},{name:'Leche condensada',sku:'ING-025',qty:100,unit:'ml',unitCost:0.008,total:0.80},{name:'Coco rallado',sku:'ING-028',qty:30,unit:'g',unitCost:0.018,total:0.54}],
+steps:[{n:1,text:'Lavar el arroz. Remojar 15 min.'},{n:2,text:'Hervir leche con canela y clavo. Agregar arroz.'},{n:3,text:'Cocinar a fuego medio revolviendo 25-30 min.',note:'No dejar de revolver para evitar que se pegue.'},{n:4,text:'Agregar azúcar y leche condensada. 5 min más.'},{n:5,text:'Retirar especias. Agregar vainilla y coco.'},{n:6,text:'Servir. Espolvorear canela.'}],
+notes:'Usar arroz extra de grano corto.',quality:'Textura cremosa, dulzor equilibrado.',chef:'Leche condensada al final da brillo y suavidad.',photos:['🍚','🥛','✨']},
+{id:4,name:'Causa Limeña de Atún',category:'Entradas',emoji:'🥑',time:40,portions:6,yield:'750g',cost:9.60,sku:'ENT-001',status:'active',fav:true,tags:['Frío','Banquetes'],updated:'2026-06-03',views:201,
+ingredients:[{name:'Papa amarilla',sku:'ING-030',qty:800,unit:'g',unitCost:0.003,total:2.40},{name:'Atún en lata',sku:'ING-031',qty:300,unit:'g',unitCost:0.014,total:4.20},{name:'Mayonesa',sku:'ING-032',qty:100,unit:'g',unitCost:0.012,total:1.20},{name:'Ají amarillo pasta',sku:'ING-033',qty:40,unit:'g',unitCost:0.015,total:0.60},{name:'Palta',sku:'ING-035',qty:200,unit:'g',unitCost:0.008,total:1.60}],
+steps:[{n:1,text:'Cocer papas. Pelar en caliente y presar a puré fino.'},{n:2,text:'Mezclar puré con ají, limón, aceite y sal. Amasar.',note:'La masa no debe pegarse.'},{n:3,text:'Mezclar atún con mayonesa y sal.'},{n:4,text:'Aro de moldear: masa, atún, palta laminada.'},{n:5,text:'Segunda capa de masa. Compactar.'},{n:6,text:'Decorar con mayonesa y tomate cherry.'}],
+notes:'Trabajar la papa en caliente. No refrigerar más de 4 horas.',quality:'Capas definidas, presentación impecable.',chef:'Servir a 8-10°C. Nunca congelar.',photos:['🥑','🐟','🍋']},
+{id:5,name:'Ají de Gallina Clásico',category:'Aves',emoji:'🍗',time:60,portions:6,yield:'900g',cost:14.40,sku:'AVE-001',status:'active',fav:false,tags:['Clásico','Confort'],updated:'2026-05-15',views:178,
+ingredients:[{name:'Pechuga de pollo',sku:'ING-041',qty:700,unit:'g',unitCost:0.009,total:6.30},{name:'Ají amarillo',sku:'ING-012',qty:100,unit:'g',unitCost:0.008,total:0.80},{name:'Pan de molde',sku:'ING-042',qty:150,unit:'g',unitCost:0.004,total:0.60},{name:'Leche evaporada',sku:'ING-043',qty:200,unit:'ml',unitCost:0.005,total:1.00},{name:'Nueces',sku:'ING-044',qty:80,unit:'g',unitCost:0.025,total:2.00},{name:'Queso parmesano',sku:'ING-045',qty:60,unit:'g',unitCost:0.028,total:1.68}],
+steps:[{n:1,text:'Cocer pechuga con sal y laurel. Deshilachar fino.'},{n:2,text:'Remojar pan en leche. Licuar con ají amarillo.'},{n:3,text:'Sofrito de cebolla y ajo. Agregar crema. 10 min.',note:'El sofrito de base es fundamental.'},{n:4,text:'Agregar pollo. Nueces y parmesano.'},{n:5,text:'Ajustar sazón. Si espesa agregar leche.'},{n:6,text:'Servir sobre arroz y papas. Decorar con aceitunas.'}],
+notes:'Ají amarillo fresco da mejor sabor.',quality:'Crema homogénea, color amarillo intenso.',chef:'El parmesano al final da el toque umami.',photos:['🍗','🌽','🧀']},
+{id:6,name:'Pisco Sour Clásico',category:'Bebidas',emoji:'🍹',time:5,portions:1,yield:'180ml',cost:3.20,sku:'BEB-001',status:'active',fav:true,tags:['Cóctel','Firma'],updated:'2026-06-05',views:420,
+ingredients:[{name:'Pisco Quebranta',sku:'ING-050',qty:60,unit:'ml',unitCost:0.035,total:2.10},{name:'Jugo de limón',sku:'ING-002',qty:30,unit:'ml',unitCost:0.003,total:0.09},{name:'Jarabe de goma',sku:'ING-051',qty:20,unit:'ml',unitCost:0.008,total:0.16},{name:'Clara de huevo',sku:'ING-052',qty:15,unit:'ml',unitCost:0.015,total:0.225}],
+steps:[{n:1,text:'Pisco, limón, jarabe y clara en coctelera sin hielo.'},{n:2,text:'Dry shake 15 segundos para emulsionar.',note:'El dry shake es clave para la espuma.'},{n:3,text:'Agregar hielo. Shake 10 segundos más.'},{n:4,text:'Colar doble en copa fría.'},{n:5,text:'Decorar con angostura y canela.'}],
+notes:'Pisco Quebranta para perfil clásico.',quality:'Espuma compacta, equilibrio ácido-dulce.',chef:'La copa debe estar fría. Servir inmediatamente.',photos:['🍹','🍋','✨']}
+],
+inventory:[
+{sku:'ING-001',name:'Corvina fresca',unit:'kg',cost:18.00,stock:15,minStock:5,category:'Proteínas',updated:'2026-06-10'},
+{sku:'ING-002',name:'Jugo de limón',unit:'L',cost:3.00,stock:8,minStock:3,category:'Frutas',updated:'2026-06-10'},
+{sku:'ING-003',name:'Rocoto fresco',unit:'kg',cost:12.00,stock:3,minStock:2,category:'Verduras',updated:'2026-06-09'},
+{sku:'ING-004',name:'Cebolla morada',unit:'kg',cost:4.00,stock:12,minStock:4,category:'Verduras',updated:'2026-06-10'},
+{sku:'ING-005',name:'Cilantro',unit:'kg',cost:8.00,stock:2,minStock:2,category:'Hierbas',updated:'2026-06-10'},
+{sku:'ING-010',name:'Lomo de res',unit:'kg',cost:22.00,stock:8,minStock:3,category:'Proteínas',updated:'2026-06-10'},
+{sku:'ING-012',name:'Ají amarillo',unit:'kg',cost:8.00,stock:4,minStock:2,category:'Ajíes',updated:'2026-06-09'},
+{sku:'ING-020',name:'Arroz extra',unit:'kg',cost:2.00,stock:25,minStock:10,category:'Granos',updated:'2026-06-05'},
+{sku:'ING-021',name:'Leche entera',unit:'L',cost:2.00,stock:30,minStock:10,category:'Lácteos',updated:'2026-06-10'},
+{sku:'ING-030',name:'Papa amarilla',unit:'kg',cost:3.00,stock:20,minStock:8,category:'Tubérculos',updated:'2026-06-10'},
+{sku:'ING-041',name:'Pechuga de pollo',unit:'kg',cost:9.00,stock:10,minStock:4,category:'Proteínas',updated:'2026-06-10'},
+{sku:'ING-044',name:'Nueces',unit:'kg',cost:25.00,stock:2,minStock:1,category:'Frutos secos',updated:'2026-06-08'},
+{sku:'ING-050',name:'Pisco Quebranta',unit:'L',cost:35.00,stock:6,minStock:2,category:'Bebidas',updated:'2026-06-09'}
+],
+production:[
+{id:'PROD-001',recipe:'Ceviche Clásico de Rocoto',qty:20,unit:'porciones',date:'2026-06-11',status:'en-proceso',resp:'Chef Marco',notes:'Servicio del almuerzo'},
+{id:'PROD-002',recipe:'Lomo Saltado Tradicional',qty:15,unit:'porciones',date:'2026-06-11',status:'pendiente',resp:'Chef Ana',notes:'Turno noche'},
+{id:'PROD-003',recipe:'Ají de Gallina Clásico',qty:12,unit:'porciones',date:'2026-06-12',status:'pendiente',resp:'Chef Marco',notes:'Buffet dominical'},
+{id:'PROD-004',recipe:'Pisco Sour Clásico',qty:50,unit:'unidades',date:'2026-06-11',status:'completado',resp:'Bartender Luis',notes:'Evento especial'}
+],
+history:[
+{action:'Receta actualizada: Ceviche Clásico',user:'Chef Marco',date:'2026-06-10 14:32'},
+{action:'Nueva receta creada: Tiradito de Lenguado',user:'Chef Ana',date:'2026-06-09 11:15'},
+{action:'Costo actualizado: Lomo de res +5%',user:'Admin',date:'2026-06-08 09:00'},
+{action:'Receta archivada: Sopa Criolla v1',user:'Admin',date:'2026-06-07 16:45'},
+{action:'Inventario actualizado: 12 ingredientes',user:'Almacén',date:'2026-06-07 08:30'}
+],
+roles:[
+{ic:'👑',name:'Administrador',perms:'Acceso total. Gestiona usuarios, costos, recetas y configuración.'},
+{ic:'👨‍🍳',name:'Chef',perms:'Crea y edita recetas, gestiona producción y estándares.'},
+{ic:'🍳',name:'Cocina',perms:'Consulta recetas, marca producción y reporta stock.'},
+{ic:'👁️',name:'Consulta',perms:'Solo lectura. Visualiza recetas e información.'}
+]
+};
+let MARGIN=35;
+const fmt=n=>'S/ '+Number(n).toFixed(2);
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+let scaleFactor=1;
+function toast(msg,type){const t=$('#toast');t.textContent=msg;t.className='toast on '+(type==='ok'?'toast-ok':type==='err'?'toast-err':'');setTimeout(()=>t.classList.remove('on'),2600);}
+function openModal(id){$('#'+id).classList.add('on');}
+function closeModal(id){$('#'+id).classList.remove('on');}
+function navTo(page){$$('.nav').forEach(n=>n.classList.remove('on'));$$('.page').forEach(p=>p.classList.remove('on'));const nav=document.querySelector('.nav[data-page="'+page+'"]');if(nav)nav.classList.add('on');const pg=$('#page-'+page);if(pg)pg.classList.add('on');if(page==='recipes'){closeDetail();}window.scrollTo(0,0);}
+function statCard(ic,cls,val,label,delta,dtype){return '<div class="sc"><div class="sic '+cls+'">'+ic+'</div><div class="sv">'+val+'</div><div class="sl">'+label+'</div>'+(delta?'<div class="sdelta '+(dtype||'up')+'">'+delta+'</div>':'')+'</div>';}
+function renderDash(){
+const totalRec=DB.recipes.length;
+const cats=[...new Set(DB.recipes.map(r=>r.category))].length;
+const avgCost=DB.recipes.reduce((a,r)=>a+r.cost,0)/totalRec;
+const newRec=DB.recipes.filter(r=>r.updated>='2026-06-01').length;
+$('#dashStats').innerHTML=
+statCard('📖','o',totalRec,'Total de recetas','+'+newRec+' nuevas','up')+
+statCard('📁','b',cats,'Total categorías','','up')+
+statCard('💰','g',fmt(avgCost),'Costo promedio','−5% vs mes','down')+
+statCard('🔥','y',DB.recipes.reduce((a,r)=>a+r.views,0),'Consultas totales','+18%','up')+
+statCard('⭐','r',DB.recipes.filter(r=>r.fav).length,'Favoritas','','up');
+const top=[...DB.recipes].sort((a,b)=>b.views-a.views).slice(0,5);
+$('#topRecipes').innerHTML=top.map((r,i)=>'<div class="flex flex-c jb" style="padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer" onclick="openDetail('+r.id+')"><div class="flex flex-c gap3"><span style="font-size:20px">'+r.emoji+'</span><div><div style="font-size:13px;font-weight:600">'+r.name+'</div><div style="font-size:11px;color:var(--tm)">'+r.category+'</div></div></div><span class="badge bacc">'+r.views+' vistas</span></div>').join('');
+$('#recentAct').innerHTML=DB.history.map(h=>'<div class="hist-item" style="padding:10px 0"><div class="hist-dot"></div><div class="hist-info"><div class="hist-action">'+h.action+'</div><div class="hist-meta">'+h.user+' · '+h.date+'</div></div></div>').join('');
+const active=DB.production.filter(p=>p.status!=='completado');
+$('#prodCountBadge').textContent=active.length+' pendientes';
+$('#prodWidget').innerHTML='<div class="tw"><table><thead><tr><th>Orden</th><th>Receta</th><th>Cantidad</th><th>Responsable</th><th>Estado</th></tr></thead><tbody>'+DB.production.map(p=>'<tr><td class="tm3">'+p.id+'</td><td>'+p.recipe+'</td><td>'+p.qty+' '+p.unit+'</td><td>'+p.resp+'</td><td>'+prodBadge(p.status)+'</td></tr>').join('')+'</tbody></table></div>';
+renderCharts();
+}
+function prodBadge(s){const m={'pendiente':['bwrn','Pendiente'],'en-proceso':['bacc','En proceso'],'completado':['bsuc','Completado']};const x=m[s]||['bmut',s];return '<span class="badge '+x[0]+'">'+x[1]+'</span>';}
+let chartInstances={};
+function renderCharts(){
+if(typeof Chart==='undefined')return;
+Object.values(chartInstances).forEach(c=>{try{c.destroy();}catch(e){}});
+const catCount={};DB.recipes.forEach(r=>catCount[r.category]=(catCount[r.category]||0)+1);
+const ctx1=$('#chartCat');
+if(ctx1)chartInstances.cat=new Chart(ctx1,{type:'doughnut',data:{labels:Object.keys(catCount),datasets:[{data:Object.values(catCount),backgroundColor:['#F97316','#FB923C','#22C55E','#3B82F6','#F59E0B','#EF4444'],borderWidth:0}]},options:{plugins:{legend:{position:'right',labels:{color:'#CBD5E1',font:{size:11},padding:12}}},cutout:'65%',maintainAspectRatio:false}});
+const ctx2=$('#chartCost');
+if(ctx2)chartInstances.cost=new Chart(ctx2,{type:'bar',data:{labels:DB.recipes.map(r=>r.name.split(' ').slice(0,2).join(' ')),datasets:[{label:'Costo S/.',data:DB.recipes.map(r=>r.cost),backgroundColor:'#F97316',borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#64748B',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748B'},grid:{color:'#1E293B'}}},maintainAspectRatio:false}});
+const ctx3=$('#chartMargin');
+if(ctx3)chartInstances.margin=new Chart(ctx3,{type:'bar',data:{labels:DB.recipes.map(r=>r.name.split(' ').slice(0,2).join(' ')),datasets:[{label:'Costo',data:DB.recipes.map(r=>r.cost),backgroundColor:'#F97316',borderRadius:4},{label:'Precio sugerido',data:DB.recipes.map(r=>r.cost/(1-MARGIN/100)),backgroundColor:'#22C55E',borderRadius:4}]},options:{plugins:{legend:{labels:{color:'#CBD5E1'}}},scales:{x:{ticks:{color:'#64748B',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748B'},grid:{color:'#1E293B'}}},maintainAspectRatio:false}});
+}
+let activeCat='Todas';
+function renderRecipes(list){
+list=list||DB.recipes;
+$('#recipesSub').textContent=list.length+' recetas · '+[...new Set(DB.recipes.map(r=>r.category))].length+' categorías';
+$('#nbRecipes').textContent=DB.recipes.length;
+const grid=$('#recipesGrid');
+if(!list.length){grid.innerHTML='';$('#recipesEmpty').style.display='block';return;}
+$('#recipesEmpty').style.display='none';
+grid.innerHTML=list.map(r=>recipeCard(r)).join('');
+}
+function recipeCard(r){
+return '<div class="rc" onclick="openDetail('+r.id+')"><div class="rc-img">'+r.emoji+'<div class="rc-ov"></div><span class="rc-cat">'+r.category+'</span><button class="rc-fav" onclick="event.stopPropagation();toggleFav('+r.id+')">'+(r.fav?'❤️':'🤍')+'</button><span class="rc-st '+(r.status==='active'?'a':'i')+'"></span></div><div class="rc-body"><div class="rc-name">'+r.name+'</div><div class="tags">'+r.tags.map(t=>'<span class="tag to">'+t+'</span>').join('')+(r.status==='inactive'?'<span class="tag tm2">Inactivo</span>':'')+'</div><div class="rc-meta"><span class="rmi">⏱ '+r.time+' min</span><span class="rmi">🍽 '+r.portions+' porc.</span><span class="rmi">🧂 '+r.ingredients.length+' ingr.</span></div></div><div class="rc-foot"><span class="rcost">'+fmt(r.cost)+'</span><span class="rdate">Act. '+r.updated+'</span></div></div>';
+}
+function toggleFav(id){const r=DB.recipes.find(x=>x.id===id);r.fav=!r.fav;filterRecipes();renderFav();toast(r.fav?'Agregada a favoritos':'Quitada de favoritos','ok');}
+function filterRecipes(){
+const q=($('#recipeSearch').value||'').toLowerCase();
+let list=DB.recipes.filter(r=>{
+const catOk=activeCat==='Todas'||r.category===activeCat;
+const qOk=!q||r.name.toLowerCase().includes(q)||r.sku.toLowerCase().includes(q)||r.category.toLowerCase().includes(q)||r.ingredients.some(i=>i.name.toLowerCase().includes(q)||i.sku.toLowerCase().includes(q));
+return catOk&&qOk;});
+renderRecipes(list);
+}
+function renderChips(){
+const cats=['Todas',...new Set(DB.recipes.map(r=>r.category))];
+$('#catChips').innerHTML=cats.map(c=>'<button class="chip'+(c===activeCat?' on':'')+'" onclick="setCat(\''+c+'\')">'+c+'</button>').join('');
+}
+function setCat(c){activeCat=c;renderChips();filterRecipes();}
+function renderFav(){
+const favs=DB.recipes.filter(r=>r.fav);
+$('#favGrid').innerHTML=favs.length?favs.map(r=>recipeCard(r)).join(''):'<div class="empty"><div class="empty-icon">⭐</div><div class="empty-t">Sin favoritos</div><div class="empty-s">Marca recetas con el corazón</div></div>';
+}
+function openDetail(id){
+const r=DB.recipes.find(x=>x.id===id);if(!r)return;scaleFactor=1;
+navTo('recipes');
+$('#recipesGrid').style.display='none';$('.fbar').style.display='none';$('#recipeDetail').style.display='block';
+const sellPrice=r.cost/(1-MARGIN/100);
+$('#detailContent').innerHTML=
+'<div class="rd-hero"><div class="rd-hero-grad"></div><div class="rd-hero-c"><div style="font-size:64px;margin-bottom:8px">'+r.emoji+'</div><h1 class="rd-title">'+r.name+'</h1><div class="rd-pills"><span class="rpill hi">'+r.category+'</span><span class="rpill">⏱ '+r.time+' min</span><span class="rpill">🍽 '+r.portions+' porciones</span><span class="rpill">⚖ '+r.yield+'</span><span class="rpill">💰 '+fmt(r.cost)+'</span><span class="rpill">SKU: '+r.sku+'</span></div></div></div>'+
+'<div class="rdg"><div>'+
+'<div class="card mb8"><div class="card-h"><span class="card-t">🧂 Ingredientes</span><span class="badge bacc" id="scaleLabel">x1 · '+r.portions+' porciones</span></div><div class="tw"><table id="ingTable"><thead><tr><th>Ingrediente</th><th>SKU</th><th>Cantidad</th><th>Unidad</th><th>C. Unit.</th><th>C. Total</th></tr></thead><tbody>'+
+r.ingredients.map(i=>'<tr><td>'+i.name+'</td><td class="tm3">'+i.sku+'</td><td class="ing-qty" data-base="'+i.qty+'">'+i.qty+'</td><td>'+i.unit+'</td><td>'+fmt(i.unitCost)+'</td><td class="ta ing-total" data-base="'+i.total+'">'+fmt(i.total)+'</td></tr>').join('')+
+'</tbody><tfoot><tr><td colspan="5">Costo Total Receta</td><td class="ta" id="ingTotalSum">'+fmt(r.cost)+'</td></tr></tfoot></table></div></div>'+
+'<div class="card mb8"><div class="card-h"><span class="card-t">👨‍🍳 Preparación</span></div><div class="card-b"><ol class="steps">'+
+r.steps.map(s=>'<li class="step"><div class="snum">'+s.n+'</div><div class="step-content"><div class="stxt">'+s.text+'</div>'+(s.note?'<div class="snote">💡 '+s.note+'</div>':'')+'</div></li>').join('')+
+'</ol></div></div>'+
+'<div class="card mb8"><div class="card-h"><span class="card-t">📝 Notas del Chef</span></div><div class="card-b"><div style="margin-bottom:16px"><div style="font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;margin-bottom:6px">Recomendaciones</div><div style="color:var(--ts);font-size:13px">'+r.notes+'</div></div><div style="margin-bottom:16px"><div style="font-size:11px;font-weight:600;color:var(--ok);text-transform:uppercase;margin-bottom:6px">Estándar de calidad</div><div style="color:var(--ts);font-size:13px">'+r.quality+'</div></div><div><div style="font-size:11px;font-weight:600;color:var(--warn);text-transform:uppercase;margin-bottom:6px">Observación del chef</div><div style="color:var(--ts);font-size:13px">'+r.chef+'</div></div></div></div>'+
+'<div class="card"><div class="card-h"><span class="card-t">📸 Galería</span></div><div class="card-b"><div class="photo-grid">'+r.photos.map(p=>'<div class="photo-item" onclick="zoomPhoto(\''+p+'\')">'+p+'</div>').join('')+'<div class="photo-item photo-add" onclick="toast(\'Sube fotos de tus platos\',\'ok\')">➕<span>Agregar</span></div></div></div></div>'+
+'</div>'+
+'<div class="cpanel"><div class="cpanel-h"><div class="cpanel-t">💰 Control de Costos</div></div><div class="cbreak"><div class="cline"><span class="cll">Costo receta</span><span class="clv" id="cpCost">'+fmt(r.cost)+'</span></div><div class="cline"><span class="cll">Costo por porción</span><span class="clv" id="cpPortion">'+fmt(r.cost/r.portions)+'</span></div><div class="cline"><span class="cll">Margen sugerido</span><span class="clv">'+MARGIN+'%</span></div><div class="cline tot"><span class="cll">Precio venta</span><span class="clv">'+fmt(sellPrice)+'</span></div></div>'+
+'<div class="scaler"><div class="scaler-t">🔄 Escalador de Recetas</div><div class="scaler-g"><button class="scalerb on" onclick="scaleRecipe(1,'+r.portions+',this)">1x</button><button class="scalerb" onclick="scaleRecipe(10/'+r.portions+','+r.portions+',this)">10p</button><button class="scalerb" onclick="scaleRecipe(50/'+r.portions+','+r.portions+',this)">50p</button><button class="scalerb" onclick="scaleRecipe(100/'+r.portions+','+r.portions+',this)">100p</button></div></div>'+
+'<div class="mbar"><div class="mbar-l"><span style="color:var(--tm)">Margen de contribución</span><span style="color:var(--ok);font-weight:700">'+MARGIN+'%</span></div><div class="ptrack"><div class="pfill" style="width:'+MARGIN+'%"></div></div></div></div></div>';
+window.scrollTo(0,0);
+}
+function scaleRecipe(factor,basePort,btn){
+scaleFactor=factor;
+$$('.scalerb').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');
+let sum=0;
+$$('.ing-qty').forEach(td=>{const base=parseFloat(td.dataset.base);td.textContent=(base*factor).toFixed(base*factor<10?1:0);});
+$$('.ing-total').forEach(td=>{const base=parseFloat(td.dataset.base);const v=base*factor;sum+=v;td.textContent=fmt(v);});
+$('#ingTotalSum').textContent=fmt(sum);
+$('#cpCost').textContent=fmt(sum);
+$('#cpPortion').textContent=fmt(sum/(basePort*factor));
+const newPort=Math.round(basePort*factor);
+$('#scaleLabel').textContent='x'+factor.toFixed(1)+' · '+newPort+' porciones';
+}
+function closeDetail(){$('#recipeDetail').style.display='none';const g=$('#recipesGrid');if(g)g.style.display='grid';const f=$('.fbar');if(f)f.style.display='flex';}
+function zoomPhoto(emoji){toast('Vista ampliada: '+emoji,'ok');}
+function renderCategories(){
+const catCount={};DB.recipes.forEach(r=>catCount[r.category]=(catCount[r.category]||0)+1);
+const icons={'Mariscos':'🦐','Carnes':'🥩','Aves':'🍗','Postres':'🍰','Bebidas':'🍹','Entradas':'🥗','Sopas':'🍲','Ensaladas':'🥬','Arroces':'🍚','Pastas':'🍝','Salsas':'🧂','Bases':'🧭'};
+$('#categoriesGrid').innerHTML=Object.keys(catCount).map(c=>'<div class="card" style="cursor:pointer" onclick="setCat(\''+c+'\');navTo(\'recipes\')"><div class="card-b" style="text-align:center;padding:32px"><div style="font-size:40px;margin-bottom:12px">'+(icons[c]||'🍽')+'</div><div style="font-size:16px;font-weight:700;margin-bottom:4px">'+c+'</div><div class="badge bacc">'+catCount[c]+' recetas</div></div></div>').join('');
+}
+function renderProduction(){
+const pend=DB.production.filter(p=>p.status==='pendiente').length;
+const proc=DB.production.filter(p=>p.status==='en-proceso').length;
+const comp=DB.production.filter(p=>p.status==='completado').length;
+const totalQty=DB.production.reduce((a,p)=>a+p.qty,0);
+$('#prodStats').innerHTML=statCard('📋','o',DB.production.length,'Total órdenes','','up')+statCard('⏳','y',pend,'Pendientes','','up')+statCard('🔥','b',proc,'En proceso','','up')+statCard('✅','g',comp,'Completadas','','up');
+$('#prodTable').innerHTML='<table><thead><tr><th>Orden</th><th>Receta</th><th>Cantidad</th><th>Fecha</th><th>Responsable</th><th>Estado</th><th>Notas</th></tr></thead><tbody>'+DB.production.map(p=>'<tr><td class="tm3">'+p.id+'</td><td>'+p.recipe+'</td><td class="tb2">'+p.qty+' '+p.unit+'</td><td>'+p.date+'</td><td>'+p.resp+'</td><td>'+prodBadge(p.status)+'</td><td style="color:var(--tm);font-size:12px">'+p.notes+'</td></tr>').join('')+'</tbody></table>';
+}
+function renderCosts(){
+const avg=DB.recipes.reduce((a,r)=>a+r.cost,0)/DB.recipes.length;
+const max=Math.max(...DB.recipes.map(r=>r.cost));
+const totalSell=DB.recipes.reduce((a,r)=>a+r.cost/(1-MARGIN/100),0);
+$('#costStats').innerHTML=statCard('💰','o',fmt(avg),'Costo promedio','','up')+statCard('📈','r',fmt(max),'Receta más costosa','','up')+statCard('🏷️','g',MARGIN+'%','Margen objetivo','','up')+statCard('💵','b',fmt(totalSell),'Venta sugerida total','','up');
+$('#costsTable').innerHTML='<table><thead><tr><th>Receta</th><th>Categoría</th><th>Costo Receta</th><th>Costo/Porción</th><th>Margen</th><th>Precio Venta</th></tr></thead><tbody>'+DB.recipes.map(r=>{const sell=r.cost/(1-MARGIN/100);return '<tr><td>'+r.emoji+' '+r.name+'</td><td>'+r.category+'</td><td class="tb2">'+fmt(r.cost)+'</td><td>'+fmt(r.cost/r.portions)+'</td><td><span class="badge bsuc">'+MARGIN+'%</span></td><td class="ta">'+fmt(sell)+'</td></tr>';}).join('')+'</tbody></table>';
+renderCharts();
+}
+function renderInventory(list){
+list=list||DB.inventory;
+let ok=0,low=0,crit=0;
+DB.inventory.forEach(i=>{if(i.stock<=i.minStock)crit++;else if(i.stock<=i.minStock*1.5)low++;else ok++;});
+$('#invOk').textContent=ok+' OK';$('#invLow').textContent=low+' Bajo';$('#invCrit').textContent=crit+' Crítico';
+$('#invTable').innerHTML='<table><thead><tr><th>SKU</th><th>Ingrediente</th><th>Categoría</th><th>Unidad</th><th>Costo Prom.</th><th>Stock</th><th>Stock Mín.</th><th>Estado</th><th>Actualizado</th></tr></thead><tbody>'+list.map(i=>{let st,b;if(i.stock<=i.minStock){st='Crítico';b='berr';}else if(i.stock<=i.minStock*1.5){st='Bajo';b='bwrn';}else{st='OK';b='bsuc';}return '<tr><td class="tm3">'+i.sku+'</td><td>'+i.name+'</td><td>'+i.category+'</td><td>'+i.unit+'</td><td class="tb2">'+fmt(i.cost)+'</td><td>'+i.stock+'</td><td>'+i.minStock+'</td><td><span class="badge '+b+'">'+st+'</span></td><td style="color:var(--tm);font-size:12px">'+i.updated+'</td></tr>';}).join('')+'</tbody></table>';
+}
+function filterInventory(q){q=(q||'').toLowerCase();renderInventory(DB.inventory.filter(i=>i.name.toLowerCase().includes(q)||i.sku.toLowerCase().includes(q)));}
+function renderHistory(){
+$('#histList').innerHTML=DB.history.map(h=>'<div class="hist-item"><div class="hist-dot"></div><div class="hist-info"><div class="hist-action">'+h.action+'</div><div class="hist-meta">👤 '+h.user+' · 🕒 '+h.date+'</div></div></div>').join('');
+}
+function renderRoles(){
+$('#rolesGrid').innerHTML=DB.roles.map(r=>'<div class="role-card"><div class="role-ic">'+r.ic+'</div><div class="role-name">'+r.name+'</div><div class="role-perms">'+r.perms+'</div></div>').join('');
+}
+function globalSearch(q){
+q=(q||'').toLowerCase();const box=$('#searchResults');
+if(!q){box.classList.remove('on');return;}
+const results=[];
+DB.recipes.forEach(r=>{if(r.name.toLowerCase().includes(q)||r.sku.toLowerCase().includes(q))results.push({type:'Receta',icon:r.emoji,name:r.name,sub:r.category+' · '+r.sku,cat:'Receta',action:'openDetail('+r.id+')'});});
+DB.recipes.forEach(r=>{r.ingredients.forEach(i=>{if(i.name.toLowerCase().includes(q)||i.sku.toLowerCase().includes(q)){if(!results.find(x=>x.name===i.name&&x.cat==='Ingrediente'))results.push({type:'Ingrediente',icon:'🧂',name:i.name,sub:'SKU: '+i.sku+' · en '+r.name,cat:'Ingrediente',action:'openDetail('+r.id+')'});}});});
+DB.inventory.forEach(i=>{if((i.name.toLowerCase().includes(q)||i.sku.toLowerCase().includes(q))&&!results.find(x=>x.name===i.name))results.push({type:'Inventario',icon:'📦',name:i.name,sub:'SKU: '+i.sku+' · Stock: '+i.stock,cat:'Inventario',action:'navTo(\'inventory\')'});});
+[...new Set(DB.recipes.map(r=>r.category))].forEach(c=>{if(c.toLowerCase().includes(q))results.push({type:'Categoría',icon:'📁',name:c,sub:'Categoría',cat:'Categoría',action:'setCat(\''+c+'\');navTo(\'recipes\')'});});
+if(!results.length){box.innerHTML='<div class="sr-item"><div class="sr-icon">🔍</div><div><div class="sr-name">Sin resultados</div><div class="sr-sub">Intenta otro término</div></div></div>';box.classList.add('on');return;}
+box.innerHTML=results.slice(0,8).map(r=>'<div class="sr-item" onclick="'+r.action+';$(\'#searchResults\').classList.remove(\'on\');$(\'#globalSearch\').value=\'\'"><div class="sr-icon">'+r.icon+'</div><div><div class="sr-name">'+r.name+'</div><div class="sr-sub">'+r.sub+'</div></div><span class="sr-cat">'+r.cat+'</span></div>').join('');
+box.classList.add('on');
+}
+function saveRecipe(){
+const name=$('#nrName').value.trim();if(!name){toast('Ingresa un nombre','err');return;}
+const id=Math.max(...DB.recipes.map(r=>r.id))+1;
+DB.recipes.push({id,name,category:$('#nrCat').value,emoji:'🍽',time:+$('#nrTime').value||30,portions:+$('#nrPort').value||4,yield:$('#nrYield').value||'N/D',cost:0,sku:$('#nrSku').value||'NEW-'+id,status:$('#nrStatus').value,fav:false,tags:['Nueva'],updated:'2026-06-11',views:0,ingredients:[],steps:[],notes:$('#nrNotes').value||'',quality:'',chef:'',photos:['🍽']});
+DB.history.unshift({action:'Nueva receta creada: '+name,user:'Administrador',date:'2026-06-11 '+new Date().toTimeString().slice(0,5)});
+closeModal('modalRecipe');['nrName','nrTime','nrPort','nrYield','nrSku','nrNotes'].forEach(i=>{const e=$('#'+i);if(e)e.value='';});
+filterRecipes();renderDash();renderHistory();toast('Receta creada correctamente','ok');
+}
+function saveProd(){
+const rec=$('#poRecipe').value;if(!rec){toast('Selecciona una receta','err');return;}
+const id='PROD-'+String(DB.production.length+1).padStart(3,'0');
+DB.production.push({id,recipe:rec,qty:+$('#poQty').value||1,unit:$('#poUnit').value,date:$('#poDate').value||'2026-06-11',status:'pendiente',resp:$('#poResp').value||'Sin asignar',notes:$('#poNotes').value||''});
+closeModal('modalProd');renderProduction();renderDash();toast('Orden de producción creada','ok');
+}
+function saveIng(){
+const name=$('#ivName').value.trim();const sku=$('#ivSku').value.trim();if(!name||!sku){toast('Nombre y SKU requeridos','err');return;}
+DB.inventory.push({sku,name,unit:$('#ivUnit').value,cost:+$('#ivCost').value||0,stock:+$('#ivStock').value||0,minStock:+$('#ivMin').value||0,category:$('#ivCatF').value||'General',updated:'2026-06-11'});
+closeModal('modalInv');['ivName','ivSku','ivCost','ivStock','ivMin','ivCatF'].forEach(i=>{const e=$('#'+i);if(e)e.value='';});
+renderInventory();toast('Ingrediente agregado','ok');
+}
+function exportPDF(){window.print();}
+function initModals(){
+$('#nrCat').innerHTML=DB.categories.map(c=>'<option>'+c+'</option>').join('');
+$('#poRecipe').innerHTML='<option value="">Selecciona…</option>'+DB.recipes.map(r=>'<option>'+r.name+'</option>').join('');
+$('#ivUnit').innerHTML=DB.units.map(u=>'<option>'+u+'</option>').join('');
+}
+function init(){
+$$('.nav').forEach(n=>n.addEventListener('click',()=>navTo(n.dataset.page)));
+$('#mobMenu').addEventListener('click',()=>$('#sidebar').classList.toggle('mob-open'));
+$('#globalSearch').addEventListener('input',e=>globalSearch(e.target.value));
+document.addEventListener('click',e=>{if(!e.target.closest('.tsearch'))$('#searchResults').classList.remove('on');});
+renderChips();renderRecipes();renderDash();renderCategories();renderFav();renderProduction();renderCosts();renderInventory();renderHistory();renderRoles();initModals();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+</script>
+</body>
+  </html>
