@@ -133,6 +133,24 @@ tfoot{background:var(--bg2)}tfoot td{padding:12px 16px;font-weight:700;border-to
 @media(max-width:1024px){.rdg{grid-template-columns:1fr}}
 @media(max-width:768px){:root{--sw:0px}.sidebar{transform:translateX(-240px)}.sidebar.mob-open{transform:translateX(0);width:240px}.topbar{left:0}.main{margin-left:0}.mob-menu{display:flex!important}.g2,.g3{grid-template-columns:1fr}.sgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.main{padding:16px}.pt{font-size:22px}.sgrid{grid-template-columns:1fr}}
+
+/* === Malanga-style cocina category list === */
+.ssec-cocina{margin-top:4px}
+.catnav{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:none;background:transparent;color:var(--ts);border-radius:10px;cursor:pointer;font-size:14px;text-align:left;transition:.18s;font-family:inherit}
+.catnav:hover{background:var(--bg2);color:var(--tp)}
+.catnav.active{background:var(--am);color:var(--accent)}
+.catnav-emoji{font-size:16px;line-height:1;width:20px;text-align:center}
+.catnav-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.catnav-count{font-size:12px;font-weight:600;color:var(--ts);background:var(--bg);border:1px solid var(--border);border-radius:20px;min-width:22px;height:20px;display:flex;align-items:center;justify-content:center;padding:0 6px}
+.catnav.active .catnav-count{color:#fff;background:var(--accent);border-color:var(--accent)}
+/* === Malanga-style recipe cards === */
+.rc-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.rc-ph-emoji{font-size:44px;opacity:.92;line-height:1}
+.rc-ph-cat{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--ts);text-transform:uppercase}
+.rc-cat2{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
+.rc-foot2{display:flex;align-items:center;justify-content:space-between;padding-top:12px;margin-top:12px;border-top:1px solid var(--border);font-size:13px}
+.rc-foot2 b{color:var(--tp);font-weight:700}
+.rc-foot2 span{color:var(--ts)}
 </style>
 </head>
 <body>
@@ -143,6 +161,7 @@ tfoot{background:var(--bg2)}tfoot td{padding:12px 16px;font-weight:700;border-to
 <button class="nav on" data-page="dashboard"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</button>
 <button class="nav" data-page="recipes"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Todas las Recetas<span class="nbadge" id="nbRecipes">0</span></button>
 <button class="nav" data-page="categories"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>Categorías</button>
+<div class="ssec" id="ssecCocina" style="margin-top:8px"><div class="ssec-label">Cocina</div><div id="catNavList"></div></div>
 <button class="nav" data-page="favorites"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l8.84 8.84 8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>Favoritos</button></div>
 <div class="sdiv"></div>
 <div class="ssec"><div class="ssec-label">Operaciones</div>
@@ -318,7 +337,23 @@ Q('#prodWidget').innerHTML='<div class="tw"><table><thead><tr><th>Orden</th><th>
 renderCharts();
 }
 let activeCat='Todas';
-function recipeCard(r){return '<div class="rc" onclick="openDetail('+r.id+')"><div class="rc-img">'+r.emoji+'<div class="rc-ov"></div><span class="rc-cat">'+r.category+'</span><button class="rc-fav" onclick="event.stopPropagation();toggleFav('+r.id+')">'+(r.fav?'❤️':'🤍')+'</button><span class="rc-st '+(r.status==='active'?'a':'i')+'"></span></div><div class="rc-body"><div class="rc-name">'+r.name+'</div><div class="tags">'+r.tags.map(t=>'<span class="tag to">'+t+'</span>').join('')+(r.status==='inactive'?'<span class="tag tm2">Inactivo</span>':'')+'</div><div class="rc-meta"><span class="rmi">⏱ '+r.time+' min</span><span class="rmi">🍽 '+r.portions+' porc.</span><span class="rmi">🧂 '+r.ingredients.length+' ingr.</span></div></div><div class="rc-foot"><span class="rcost">'+fmt(r.cost)+'</span><span class="rdate">Act. '+r.updated+'</span></div></div>';}
+function recipeCard(r){
+  var img = (r.photos && r.photos.length)
+    ? '<div class="rc-img" style="background-image:url(\''+r.photos[0]+'\');background-size:cover;background-position:center"></div>'
+    : '<div class="rc-img"><div class="rc-ph"><div class="rc-ph-emoji">'+(r.emoji||'🍽️')+'</div><div class="rc-ph-cat">'+r.category+'</div></div></div>';
+  var nIng = r.ingredients ? r.ingredients.length : 0;
+  var nStep = r.steps ? r.steps.length : 0;
+  var fav = r.fav
+    ? '<div class="rc-fav on" onclick="event.stopPropagation();toggleFav('+r.id+')">♥</div>'
+    : '<div class="rc-fav" onclick="event.stopPropagation();toggleFav('+r.id+')">♡</div>';
+  return '<div class="rc" onclick="openDetail('+r.id+')">'
+    + '<div style="position:relative">'+img+'<div class="rc-cat">'+r.category+'</div>'+fav+'</div>'
+    + '<div class="rc-body">'
+    +   '<div class="rc-cat2">'+r.category+'</div>'
+    +   '<div class="rc-name">'+r.name+'</div>'
+    +   '<div class="rc-foot2"><span><b>'+nIng+'</b> ingredientes</span><span><b>'+nStep+'</b> pasos</span></div>'
+    + '</div></div>';
+}
 function renderRecipes(list){list=list||DB.recipes;Q('#recipesSub').textContent=list.length+' recetas · '+[...new Set(DB.recipes.map(r=>r.category))].length+' categorías';Q('#nbRecipes').textContent=DB.recipes.length;const g=Q('#recipesGrid');if(!list.length){g.innerHTML='';Q('#recipesEmpty').style.display='block';return;}Q('#recipesEmpty').style.display='none';g.innerHTML=list.map(r=>recipeCard(r)).join('');}
 function toggleFav(id){const r=DB.recipes.find(x=>x.id===id);r.fav=!r.fav;filterRecipes();renderFav();toast(r.fav?'Agregada a favoritos':'Quitada de favoritos','ok');}
 function filterRecipes(){const q=(Q('#recipeSearch').value||'').toLowerCase();let list=DB.recipes.filter(r=>{const c=activeCat==='Todas'||r.category===activeCat;const m=!q||r.name.toLowerCase().includes(q)||r.sku.toLowerCase().includes(q)||r.category.toLowerCase().includes(q)||r.ingredients.some(i=>i.name.toLowerCase().includes(q)||i.sku.toLowerCase().includes(q));return c&&m;});renderRecipes(list);}
@@ -356,6 +391,40 @@ function saveIng(){const name=Q('#ivName').value.trim();const sku=Q('#ivSku').va
 function exportPDF(){window.print();}
 function init(){QA('.nav').forEach(n=>n.addEventListener('click',()=>navTo(n.dataset.page)));const mm=Q('#mobMenu');if(mm)mm.addEventListener('click',()=>Q('#sidebar').classList.toggle('mob-open'));Q('#globalSearch').addEventListener('input',e=>globalSearch(e.target.value));document.addEventListener('click',e=>{if(!e.target.closest('.tsearch'))Q('#searchResults').classList.remove('on');});Q('#nrCat').innerHTML=DB.categories.map(c=>'<option>'+c+'</option>').join('');Q('#poRecipe').innerHTML='<option value="">Selecciona…</option>'+DB.recipes.map(r=>'<option>'+r.name+'</option>').join('');Q('#ivUnit').innerHTML=DB.units.map(u=>'<option>'+u+'</option>').join('');renderChips();renderRecipes();renderDash();renderCategories();renderFav();renderProduction();renderCosts();renderInventory();renderHistory();renderRoles();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+</script>
+
+<script>
+(function(){
+  var CAT_EMOJI = {Entradas:'🥗',Sopas:'🍲',Ensaladas:'🥬',Arroces:'🍚',Pastas:'🍝',Carnes:'🥩',Aves:'🍗',Mariscos:'🦐',Postres:'🍰',Bebidas:'🍹',Salsas:'🥫',Bases:'🧂'};
+  function buildCatNav(){
+    var host=document.getElementById('catNavList'); if(!host||typeof DB==='undefined')return;
+    var counts={};
+    DB.recipes.forEach(function(r){counts[r.category]=(counts[r.category]||0)+1;});
+    var html=DB.categories.filter(function(c){return counts[c];}).map(function(c){
+      return '<button class="catnav" data-cat="'+c+'">'
+        +'<span class="catnav-emoji">'+(CAT_EMOJI[c]||'🍽️')+'</span>'
+        +'<span class="catnav-name">'+c+'</span>'
+        +'<span class="catnav-count">'+counts[c]+'</span></button>';
+    }).join('');
+    host.innerHTML=html;
+    host.querySelectorAll('.catnav').forEach(function(b){
+      b.addEventListener('click',function(){
+        var cat=b.getAttribute('data-cat');
+        host.querySelectorAll('.catnav').forEach(function(x){x.classList.remove('active');});
+        b.classList.add('active');
+        if(typeof navTo==='function'){navTo('recipes');}
+        var list=DB.recipes.filter(function(r){return r.category===cat;});
+        if(typeof renderRecipes==='function'){renderRecipes(list);}
+        var sub=document.getElementById('recipesSub'); if(sub){sub.textContent=list.length+' recetas · '+cat;}
+      });
+    });
+    document.querySelectorAll('.nav[data-page]').forEach(function(n){
+      n.addEventListener('click',function(){host.querySelectorAll('.catnav').forEach(function(x){x.classList.remove('active');});});
+    });
+  }
+  if(document.readyState!=='loading'){setTimeout(buildCatNav,80);}
+  else document.addEventListener('DOMContentLoaded',function(){setTimeout(buildCatNav,80);});
+})();
 </script>
 </body>
                        </html>
