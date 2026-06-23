@@ -330,5 +330,92 @@ buildSidebar();
 showAllRecipes();
 document.getElementById('statusTxt').textContent = RECIPES.length+' recetas cargadas · '+new Date().toLocaleTimeString('es-CO');
 </script>
-</body>
+
+<!-- ===== Rocoto · Rendimiento de Subrecetas (auto-inyectado) ===== -->
+<script>
+(function(){
+  if(window.__RR_REND_INSTALLED) return;
+  function RR_parseData(){
+    var txt = Array.prototype.slice.call(document.scripts).filter(function(s){return !s.src;}).map(function(s){return s.textContent;}).join('\n');
+    var out = [], from = 0;
+    while(true){
+      var arrStart = txt.indexOf('[{"id"', from);
+      if(arrStart === -1) break;
+      var depth=0, fin=arrStart, inStr=false, esc=false;
+      for(var k=arrStart;k<txt.length;k++){
+        var c = txt[k];
+        if(inStr){ if(esc){esc=false;} else if(c==='\\'){esc=true;} else if(c==='"'){inStr=false;} continue; }
+        if(c==='"'){inStr=true;} else if(c==='['){depth++;} else if(c===']'){depth--; if(depth===0){fin=k+1;break;}}
+      }
+      try{ var arr = JSON.parse(txt.substring(arrStart, fin)); if(arr && arr.length){ out = out.concat(arr); } }catch(e){}
+      from = fin;
+    }
+    var byId = {}; out.forEach(function(r){ byId[r.id] = r; }); return byId;
+  }
+  function RR_isSub(r){
+    if(!r) return false;
+    return /^Sub recetas/i.test(r.category||'') || /^Sub Recetas/i.test(r.familia||'') || /^Sub\./.test(r.name||'');
+  }
+  function RR_normUnit(u){
+    u = (u||'').toString().toLowerCase().trim();
+    if(['uds','und','u','unidad','unidades','unid'].indexOf(u)>=0) return 'und';
+    if(['gr','grs','gramos','g'].indexOf(u)>=0) return 'g';
+    if(['ml','cc','cm3'].indexOf(u)>=0) return 'ml';
+    if(['oz','onza','onzas'].indexOf(u)>=0) return 'oz';
+    if(['kg','kilo','kilos','kilogramo'].indexOf(u)>=0) return 'kg';
+    if(['l','lt','litro','litros'].indexOf(u)>=0) return 'l';
+    return u;
+  }
+  function RR_compute(r){
+    var y = (r.yield||'').toString().trim();
+    if(y && y!=='—' && y!=='-' && /\d/.test(y)) return { value:y, source:'registrado' };
+    if(r.matriz && r.matriz.yield){ var my=r.matriz.yield.toString().trim(); if(my && /\d/.test(my)) return { value:my, source:'matriz' }; }
+    var sums = {};
+    (r.ingredients||[]).forEach(function(i){
+      var u = RR_normUnit(i.unit); var q = parseFloat(i.qty)||0;
+      if(u==='oz'){ q = q*28.35; u='g'; }
+      if(u==='kg'){ q = q*1000; u='g'; }
+      if(u==='l'){ q = q*1000; u='ml'; }
+      sums[u] = (sums[u]||0) + q;
+    });
+    var order=['g','ml','und'], total=0, unit='g', found=false;
+    for(var oi=0; oi<order.length; oi++){ if(sums[order[oi]]){ total=sums[order[oi]]; unit=order[oi]; found=true; break; } }
+    if(!found){ var ks=Object.keys(sums); if(ks.length){ unit=ks[0]; total=sums[unit]; } }
+    var val = Math.round(total*10)/10;
+    return { value: val + ' ' + unit, source:'calculado' };
+  }
+  function RR_injectInto(recipe){
+    var mBody = document.getElementById('mBody');
+    if(!mBody || !recipe || !RR_isSub(recipe)) return;
+    if(mBody.querySelector('#rrAnalisis')) return;
+    var rend = RR_compute(recipe);
+    var wrap = document.createElement('div');
+    wrap.id = 'rrAnalisis';
+    wrap.style.cssText = 'margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);';
+    wrap.innerHTML =
+      '<div style="font-size:12px;letter-spacing:.14em;font-weight:700;color:#F4D000;text-transform:uppercase;margin-bottom:12px;">An\u00e1lisis Receta</div>' +
+      '<div style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(244,208,0,.08);border:1px solid rgba(244,208,0,.25);border-radius:10px;">' +
+        '<span style="font-size:18px;">\u2696\ufe0f</span>' +
+        '<span style="font-size:13px;letter-spacing:.04em;color:#d8d8d8;text-transform:uppercase;font-weight:600;">Rendimiento</span>' +
+        '<span style="margin-left:auto;font-size:18px;font-weight:800;color:#F4D000;">' + rend.value + '</span>' +
+      '</div>';
+    mBody.appendChild(wrap);
+  }
+  function RR_install(){
+    if(window.__RR_REND_INSTALLED) return;
+    if(typeof window.openRecipe !== 'function'){ return setTimeout(RR_install, 120); }
+    window.RR_DATA = RR_parseData();
+    var orig = window.openRecipe;
+    window.openRecipe = function(id){
+      var res = orig.apply(this, arguments);
+      try{ var r = window.RR_DATA[id]; setTimeout(function(){ RR_injectInto(r); }, 0); }catch(e){}
+      return res;
+    };
+    window.__RR_REND_INSTALLED = true;
+  }
+  if(document.readyState === 'complete' || document.readyState === 'interactive'){ RR_install(); }
+  else { window.addEventListener('DOMContentLoaded', RR_install); }
+})();
+</script>
+\n</body>
 </html>
