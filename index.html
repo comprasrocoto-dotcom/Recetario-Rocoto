@@ -335,22 +335,27 @@ document.getElementById('statusTxt').textContent = RECIPES.length+' recetas carg
 <script>
 (function(){
   if(window.__RR_REND_INSTALLED) return;
+  var NEEDLE = '[' + '{' + '"id"';
   function RR_parseData(){
     var txt = Array.prototype.slice.call(document.scripts).filter(function(s){return !s.src;}).map(function(s){return s.textContent;}).join('\n');
-    var out = [], from = 0;
-    while(true){
-      var arrStart = txt.indexOf('[{"id"', from);
+    var out = [], from = 0, guard = 0;
+    while(guard++ < 100000){
+      var arrStart = txt.indexOf(NEEDLE, from);
       if(arrStart === -1) break;
-      var depth=0, fin=arrStart, inStr=false, esc=false;
+      var depth=0, fin=-1, inStr=false, esc=false;
       for(var k=arrStart;k<txt.length;k++){
         var c = txt[k];
         if(inStr){ if(esc){esc=false;} else if(c==='\\'){esc=true;} else if(c==='"'){inStr=false;} continue; }
         if(c==='"'){inStr=true;} else if(c==='['){depth++;} else if(c===']'){depth--; if(depth===0){fin=k+1;break;}}
       }
-      try{ var arr = JSON.parse(txt.substring(arrStart, fin)); if(arr && arr.length){ out = out.concat(arr); } }catch(e){}
-      from = fin;
+      if(fin > arrStart){
+        try{ var arr = JSON.parse(txt.substring(arrStart, fin)); if(arr && arr.length && arr[0] && arr[0].ingredients){ out = out.concat(arr); } }catch(e){}
+        from = fin;
+      } else {
+        from = arrStart + NEEDLE.length;
+      }
     }
-    var byId = {}; out.forEach(function(r){ byId[r.id] = r; }); return byId;
+    var byId = {}; out.forEach(function(r){ if(r && r.id != null) byId[r.id] = r; }); return byId;
   }
   function RR_isSub(r){
     if(!r) return false;
@@ -401,21 +406,23 @@ document.getElementById('statusTxt').textContent = RECIPES.length+' recetas carg
       '</div>';
     mBody.appendChild(wrap);
   }
+  var RR_tries = 0;
   function RR_install(){
     if(window.__RR_REND_INSTALLED) return;
-    if(typeof window.openRecipe !== 'function'){ return setTimeout(RR_install, 120); }
-    window.RR_DATA = RR_parseData();
+    if(typeof window.openRecipe !== 'function'){ if(RR_tries++ < 100){ return setTimeout(RR_install, 150); } return; }
+    try{ window.RR_DATA = RR_parseData(); }catch(e){ window.RR_DATA = {}; }
     var orig = window.openRecipe;
     window.openRecipe = function(id){
       var res = orig.apply(this, arguments);
-      try{ var r = window.RR_DATA[id]; setTimeout(function(){ RR_injectInto(r); }, 0); }catch(e){}
+      try{ var r = window.RR_DATA && window.RR_DATA[id]; if(r) setTimeout(function(){ RR_injectInto(r); }, 0); }catch(e){}
       return res;
     };
     window.__RR_REND_INSTALLED = true;
   }
-  if(document.readyState === 'complete' || document.readyState === 'interactive'){ RR_install(); }
-  else { window.addEventListener('DOMContentLoaded', RR_install); }
+  if(document.readyState === 'complete' || document.readyState === 'interactive'){ setTimeout(RR_install, 0); }
+  else { window.addEventListener('DOMContentLoaded', function(){ setTimeout(RR_install, 0); }); }
 })();
 </script>
-\n</body>
+
+</body>
 </html>
